@@ -9,18 +9,18 @@ import Foundation
 
 class ContentItemViewModel {
     
-    private var content: ContentItem?
+    private var contentItem: ContentItem?
     
-    init(content: ContentItem? = nil) {
-        self.content = content
+    init(contentItem: ContentItem? = nil) {
+        self.contentItem = contentItem
     }
     
     var titleText: String {
-        return content?.title ?? "TITLE"
+        return contentItem?.title ?? ""
     }
     
     var target: String {
-        return content?.target ?? "TARGET"
+        return contentItem?.target ?? ""
     }
 }
 

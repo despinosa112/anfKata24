@@ -9,6 +9,6 @@ import Foundation
 
 struct ContentItem: Codable {
     let elementType: String?
-    let target: String
-    let title: String
+    let target: String?
+    let title: String?
 }

@@ -9,29 +9,38 @@ import XCTest
 @testable import ANF_Code_Test
 
 
-final class UIImageExtensionTests: XCTestCase {
+final class UIImageViewExtensionTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
+    
+    func testScaleToFitScreen_with_portrait_image() {
+        // Given
+        let image = UIImage(named: "anf-US-20160601-app-women-spotlight")
+        let expectedWidth = UIScreen.main.bounds.size.width
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        // When
+        let scaledImage = image?.scaleToFitScreen()
+
+        // Then
+        XCTAssertNotNil(scaledImage, "Scaled image should not be nil")
+        XCTAssertEqual(scaledImage?.size.width, expectedWidth, "Scaled image width should match screen size")
+        XCTAssertNotEqual(scaledImage?.size.height, image?.size.height, "Scaled image height should not match original height")
     }
+    
+    func testScaleToFitScreen_with_landscape_image() {
+        // Given
+        let image = UIImage(named: "anf-US-20160601-app-women-dresses")
+        let expectedWidth = UIScreen.main.bounds.size.width
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
+        // When
+        let scaledImage = image?.scaleToFitScreen()
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+        // Then
+        XCTAssertNotNil(scaledImage, "Scaled image should not be nil")
+        XCTAssertEqual(scaledImage?.size.width, expectedWidth, "Scaled image width should match screen width")
+        XCTAssertNotEqual(scaledImage?.size.height, image?.size.height, "Scaled image height should not match original height")
     }
 
 }

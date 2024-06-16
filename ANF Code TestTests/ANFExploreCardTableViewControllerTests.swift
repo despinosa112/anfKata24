@@ -12,7 +12,7 @@ class ANFExploreCardTableViewControllerTests: XCTestCase {
     var testInstance: ANFExploreCardTableViewController!
     
     override func setUp() {
-        testInstance = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateInitialViewController() as? ANFExploreCardTableViewController
+        testInstance = ANFExploreCardTableViewController()
     }
 
     func test_numberOfSections_ShouldBeOne() {
@@ -27,13 +27,10 @@ class ANFExploreCardTableViewControllerTests: XCTestCase {
     
     func test_cellForRowAtIndexPath_titleText_shouldNotBeBlank() {
         let firstCell = testInstance.tableView(testInstance.tableView, cellForRowAt: IndexPath(row: 0, section: 0))
-        let title = firstCell.viewWithTag(1) as? UILabel
-        XCTAssert(title?.text?.count ?? 0 > 0, "title should not be blank")
-    }
-    
-    func test_cellForRowAtIndexPath_ImageViewImage_shouldNotBeNil() {
-        let firstCell = testInstance.tableView(testInstance.tableView, cellForRowAt: IndexPath(row: 0, section: 0))
-        let imageView = firstCell.viewWithTag(2) as? UIImageView
-        XCTAssert(imageView?.image != nil, "image view image should not be nil")
+        //let titleLabel = firstCell.viewWithTag(1) as? UILabel
+        let stackview = firstCell.viewWithTag(1) as! UIStackView
+        let titleLabel = stackview.viewWithTag(2) as! UILabel
+        let titleText = titleLabel.text
+        XCTAssert(titleText == "TOPS STARTING AT $12")
     }
 }

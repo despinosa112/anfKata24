@@ -6,3 +6,13 @@
 //
 
 import Foundation
+
+struct Card: Codable {
+    
+    let title: String?
+    let backgroundImage: String?
+    let content: [ContentItem]?
+    let promoMessage: String?
+    let topDescription: String?
+    let bottomDescription: String?
+}
